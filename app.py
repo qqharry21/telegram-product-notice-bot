@@ -5,6 +5,7 @@ import schedule
 import time
 import os
 import logging
+import asyncio
 
 # 設置日誌記錄
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
@@ -27,7 +28,7 @@ def check_product_status(url):
 def send_telegram_message(message, token, chat_id):
     logger.info('Sending Telegram message...')
     bot = Bot(token=token)
-    bot.send_message(chat_id=chat_id, text=message)
+    asyncio.run(bot.send_message(chat_id=chat_id, text=message))
 
 # 獲取chat_id
 def get_chat_id(token):
